@@ -94,6 +94,58 @@ void Binary_insertion_sort(int mas[], int size) //Сортировка бинарной вставкой
 	}
 }
 
+int* Merge_sort(int* u, int* d, int l, int r)
+/*
+* Сортирует массив, используя рекурсивную сортировку слиянием
+* u(up) - указатель на массив, который нужно сортировать
+* d(down) - указатель на массив с, как минимум, таким же размером как у 'u', используется как буфер
+* l(left) - левая граница массива, передайте 0, чтобы сортировать массив с начала
+* r(right) - правая граница массива, передайте длину массива - 1, чтобы сортировать массив до последнего элемента
+* возвращает: указатель на отсортированный массив. Из-за особенностей работы данной реализации
+* отсортированная версия массива может оказаться либо в 'u', либо в 'd'
+*/
+{
+	if (l == r)
+	{
+		d[l] = u[l];
+		return d;
+	}
+	int m = (l + r) / 2;
+	// разделение и сортировка
+	int* l_buff = Merge_sort(u, d, l, m);
+	int* r_buff = Merge_sort(u, d, m + 1, r);
+	// слияние двух отсортированных половин
+	int* target = l_buff == u ? d : u;
+	int l_cur = l, r_cur = m + 1;
+	for (int i = l; i <= r; i++)
+	{
+		if (l_cur <= m && r_cur <= r)
+		{
+			if (l_buff[l_cur] < r_buff[r_cur])
+			{
+				target[i] = l_buff[l_cur];
+				l_cur++;
+			}
+			else
+			{
+				target[i] = r_buff[r_cur];
+				r_cur++;
+			}
+		}
+		else if (l_cur <= m)
+		{
+			target[i] = l_buff[l_cur];
+			l_cur++;
+		}
+		else
+		{
+			target[i] = r_buff[r_cur];
+			r_cur++;
+		}
+	}
+	return target;
+}
+
 
 int main()
 {
@@ -111,6 +163,7 @@ int main()
 	*/
 	const int size_arr = 10;
 	int* mas = Generate_mas(size_arr);
+	int buff[size_arr] = {};
 	printf("\n");
 	printf("Unsorted array: ");
 	print_mas(mas, size_arr);
@@ -128,7 +181,7 @@ int main()
 	mas = Generate_mas(size_arr);
 	printf("Unsorted array: ");
 	print_mas(mas, size_arr);
-	Binary_insertion_sort(mas, size_arr);
+	mas = Merge_sort(mas,buff,0,size_arr-1);
 	printf("Sorted array:   ");
 	print_mas(mas, size_arr);
 	printf("\n");
