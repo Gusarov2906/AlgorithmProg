@@ -148,47 +148,32 @@ int* Merge_sort(int* u, int* d, int l, int r)
 	return target;
 }
 
+//сортировка обменом, проходим по массиву, меняем соселние элементы местами если один больше другого
+// соотвественно на первой итерации на верх всплывает максимум и граница цикла уменьшается на один
+void Bubble_sort(int mas[], int size)
+{
+	bool condition = false;
+	for (int i = 0; i < size-1; i++)
+	{
+		condition = true;
+		for (int j = 0; j < size - i -1;j++) // на каждой итерациии всплывает максимум
+		{
+			if (mas[j] > mas[j + 1]) //обмен между соседними если предыдущий больше последующего
+			{
+				int tmp = mas[j];
+				mas[j] = mas[j + 1];
+				mas[j+1] = tmp;
+				condition = false; //Условие Айверсона пока не соблюдается
+			}
+		}
+		if (condition)//выходим по условию если не было перестановок
+			break;
+	}
+}
 
 int main()
 {
 	srand(time(NULL));
-	/*const int size_arr = 10;
-	int arr[size_arr] = {2,1,8,4,5,6,9,10,3,7};
-	Selection_sort(arr, size_arr);
-	print_mas(arr, size_arr);
-	int arr1[size_arr] = { 2,1,8,4,5,6,9,10,3,7 };
-	Insertion_sort(arr1, size_arr);
-	print_mas(arr1, size_arr);
-	int arr2[size_arr] = { 2,1,8,4,5,6,9,10,3,7 };
-	Binary_insertion_sort(arr2, size_arr);
-	print_mas(arr2, size_arr);
-	*/
-	/*
-	const int size_arr = 10;
-	int* mas = Generate_mas(size_arr);
-	int buff[size_arr] = {};
-	printf("\n");
-	printf("Unsorted array: ");
-	print_mas(mas, size_arr);
-	Selection_sort(mas, size_arr);
-	printf("Sorted array:   ");
-	print_mas(mas, size_arr);
-	mas = Generate_mas(size_arr);
-	printf("\n");
-	printf("Unsorted array: ");
-	print_mas(mas, size_arr);
-	Insertion_sort(mas, size_arr);
-	printf("Sorted array:   ");
-	print_mas(mas, size_arr);
-	printf("\n");
-	mas = Generate_mas(size_arr);
-	printf("Unsorted array: ");
-	print_mas(mas, size_arr);
-	mas = Merge_sort(mas,buff,0,size_arr-1);
-	printf("Sorted array:   ");
-	print_mas(mas, size_arr);
-	printf("\n");
-	*/
 	printf("***************************\nPROGRAM FOR LAB1 ALGORITHMS\n***************************\n");
 	int n=0, tmp_size=0;
 	int* mas = {};
@@ -233,8 +218,9 @@ int main()
 				printf("\n1:Selection sort\n");
 				printf("2:Insertion sort\n");
 				printf("3:Binary insertion sort\n"); 
-				printf("4:Merge sort\n\n");
-				printf("Cmd: ");
+				printf("4:Merge sort\n");
+				printf("5:Bubble sort\n");
+				printf("\nCmd: ");
 				int cmd = 0;
 				scanf("%d", &cmd);
 				switch (cmd)
@@ -280,6 +266,18 @@ int main()
 					printf("\nUnsorted array: ");
 					print_mas(mas, *size_arr);
 					mas = Merge_sort(mas, buff, 0, *size_arr - 1);
+					printf("\n");
+					printf("Sorted array:   ");
+					print_mas(mas, *size_arr);
+					printf("\n");
+					break;
+				}
+				case 5:
+				{
+
+					printf("\nUnsorted array: ");
+					print_mas(mas, *size_arr);
+					Bubble_sort(mas, *size_arr);
 					printf("\n");
 					printf("Sorted array:   ");
 					print_mas(mas, *size_arr);
