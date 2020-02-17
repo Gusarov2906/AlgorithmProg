@@ -1,3 +1,5 @@
+#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdlib.h>
 #include<stdio.h>
 #include <time.h>
@@ -161,6 +163,7 @@ int main()
 	Binary_insertion_sort(arr2, size_arr);
 	print_mas(arr2, size_arr);
 	*/
+	/*
 	const int size_arr = 10;
 	int* mas = Generate_mas(size_arr);
 	int buff[size_arr] = {};
@@ -185,5 +188,115 @@ int main()
 	printf("Sorted array:   ");
 	print_mas(mas, size_arr);
 	printf("\n");
+	*/
+	printf("***************************\nPROGRAM FOR LAB1 ALGORITHMS\n***************************\n");
+	int n=0, tmp_size=0;
+	int* mas = {};
+	const int* size_arr;
+	size_arr = 0;
+	int* buff = {};
+	bool exit_f = false;
+	while (1)
+	{
+		if (exit_f)
+		{
+			break;
+		}
+		printf("1: Generate new array\n");
+		printf("2: Sort array\n");
+		printf("0: Exit\n");
+		printf("\nCmd: ");
+		scanf("%d", &n);
+		switch (n)
+		{
+			case 1:
+			{
+				printf("\nWrite size of array: ");
+				scanf("%d", &tmp_size);
+
+				size_arr = &tmp_size;
+				mas = Generate_mas(*size_arr);
+				buff = (int*)malloc(*size_arr * sizeof(int));
+				printf("\nUnsorted array: ");
+				print_mas(mas, *size_arr);
+				printf("\n");
+				break;
+			}
+
+			case 2:
+			{
+				if (!mas)
+				{
+					printf("\nNot generated array!\n\n");
+					break;
+				}
+				printf("\n1:Selection sort\n");
+				printf("2:Insertion sort\n");
+				printf("3:Binary insertion sort\n"); 
+				printf("4:Merge sort\n\n");
+				printf("Cmd: ");
+				int cmd = 0;
+				scanf("%d", &cmd);
+				switch (cmd)
+				{
+				case 1:
+				{
+					
+					printf("\nUnsorted array: ");
+					print_mas(mas, *size_arr);
+					Selection_sort(mas, *size_arr);
+					printf("Sorted array:   ");
+					print_mas(mas, *size_arr);
+					printf("\n");
+					break;
+				}
+				case 2:
+				{
+					
+					printf("\nUnsorted array: ");
+					print_mas(mas, *size_arr);
+					Insertion_sort(mas, *size_arr);
+					printf("\n");
+					printf("Sorted array:   ");
+					print_mas(mas, *size_arr);
+					printf("\n");
+					break;
+				}
+				case 3:
+				{
+					
+					printf("\nUnsorted array: ");
+					print_mas(mas, *size_arr);
+					Binary_insertion_sort(mas, *size_arr);
+					printf("\n");
+					printf("Sorted array:   ");
+					print_mas(mas, *size_arr);
+					printf("\n");
+					break;
+				}
+				case 4:
+				{
+					
+					printf("\nUnsorted array: ");
+					print_mas(mas, *size_arr);
+					mas = Merge_sort(mas, buff, 0, *size_arr - 1);
+					printf("\n");
+					printf("Sorted array:   ");
+					print_mas(mas, *size_arr);
+					printf("\n");
+					break;
+				}
+				default:
+					break;
+				}
+				break;
+			}
+		case 0:
+			exit_f = true;
+
+		default:
+			break;
+		}
+	}
 
 }
