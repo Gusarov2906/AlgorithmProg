@@ -207,6 +207,31 @@ void Shaker_sort(int mas[], int size)
 	}
 }
 
+//Сортировка Шелла
+void Shell_sort(int mas[], int size)
+{
+	bool condition = false;
+	int d = size / 2; //шаг изначально в пол массива
+	while(true)
+	{
+		condition = true;
+		for (int j = 0; j < size - d; j++) 
+		{
+			if (mas[j] > mas[j + d]) //обмен между соседними по шагу d если предыдущий больше последующего
+			{
+				int tmp = mas[j];
+				mas[j] = mas[j + d];
+				mas[j + d] = tmp;
+				condition = false; //Условие Айверсона пока не соблюдается
+			}
+		}
+		if (d>1) //целочисленно делим шаг попалам, пока не станет 1 и сортировка не превратиться в пузырьковую
+			d = d / 2;
+		if (condition && d ==1)//выходим по условию если не было перестановок
+			break;
+	}
+}
+
 int main()
 {
 	srand(time(NULL));
@@ -257,6 +282,8 @@ int main()
 				printf("4:Merge sort\n");
 				printf("5:Bubble sort\n");
 				printf("6:Shaker sort\n");
+				printf("7:Shell sort\n");
+				printf("0:Cancel\n");
 				printf("\nCmd: ");
 				int cmd = 0;
 				scanf("%d", &cmd);
@@ -327,6 +354,18 @@ int main()
 					printf("\nUnsorted array: ");
 					print_mas(mas, *size_arr);
 					Shaker_sort(mas, *size_arr);
+					printf("\n");
+					printf("Sorted array:   ");
+					print_mas(mas, *size_arr);
+					printf("\n");
+					break;
+				}
+				case 7:
+				{
+
+					printf("\nUnsorted array: ");
+					print_mas(mas, *size_arr);
+					Shell_sort(mas, *size_arr);
 					printf("\n");
 					printf("Sorted array:   ");
 					print_mas(mas, *size_arr);
