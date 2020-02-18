@@ -271,7 +271,8 @@ int main()
 			{
 				int c = 0;
 				printf("\n1: Custom array from keyboard\n");
-				printf("2: Random array\n");
+				printf("2: Random array with range\n");
+				printf("3: Random array with default generation\n");
 				printf("\nCmd: ");
 				scanf("%d", &c);
 				switch (c)
@@ -300,6 +301,18 @@ int main()
 					scanf("%d", &max);
 					size_arr = &tmp_size;
 					mas = Generate_mas(*size_arr,min,max);
+					buff = (int*)malloc(*size_arr * sizeof(int));
+					printf("\nUnsorted array: ");
+					print_mas(mas, *size_arr);
+					printf("\n");
+					break;
+				}
+				case 3:
+				{
+					printf("\nWrite size of array: ");
+					scanf("%d", &tmp_size);
+					size_arr = &tmp_size;
+					mas = Generate_mas(*size_arr, 0, 10);
 					buff = (int*)malloc(*size_arr * sizeof(int));
 					printf("\nUnsorted array: ");
 					print_mas(mas, *size_arr);
