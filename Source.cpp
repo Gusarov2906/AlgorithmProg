@@ -171,6 +171,42 @@ void Bubble_sort(int mas[], int size)
 	}
 }
 
+//Шейкерная сортировка, проходим по массиву обменом сначала в одну,потом в другую сторону и так чередуем
+void Shaker_sort(int mas[], int size)
+{
+	bool condition = false;
+	int left = 0;
+	int right = size - 1;
+	while (left < right)
+	{
+		bool condition = true;
+		for (int i = left; i < right; i++) //Пузырьковая на максимум
+		{
+			if (mas[i] > mas[i + 1]) 
+			{
+				int tmp = mas[i];
+				mas[i] = mas[i + 1];
+				mas[i + 1] = tmp;
+				condition = false; //Условие Айверсона пока не соблюдается
+			}
+		}
+		right--;
+		for (int i = right; i > left; i--) //Пузырьковая на минимум
+		{
+			if (mas[i-1] > mas[i]) 
+			{
+				int tmp = mas[i];
+				mas[i] = mas[i - 1];
+				mas[i - 1] = tmp;
+				condition = false; //Условие Айверсона пока не соблюдается
+			}
+		}
+		left++;
+		if (condition)//выходим по условию если не было перестановок
+			break;
+	}
+}
+
 int main()
 {
 	srand(time(NULL));
@@ -220,6 +256,7 @@ int main()
 				printf("3:Binary insertion sort\n"); 
 				printf("4:Merge sort\n");
 				printf("5:Bubble sort\n");
+				printf("6:Shaker sort\n");
 				printf("\nCmd: ");
 				int cmd = 0;
 				scanf("%d", &cmd);
@@ -278,6 +315,18 @@ int main()
 					printf("\nUnsorted array: ");
 					print_mas(mas, *size_arr);
 					Bubble_sort(mas, *size_arr);
+					printf("\n");
+					printf("Sorted array:   ");
+					print_mas(mas, *size_arr);
+					printf("\n");
+					break;
+				}
+				case 6:
+				{
+
+					printf("\nUnsorted array: ");
+					print_mas(mas, *size_arr);
+					Shaker_sort(mas, *size_arr);
 					printf("\n");
 					printf("Sorted array:   ");
 					print_mas(mas, *size_arr);
