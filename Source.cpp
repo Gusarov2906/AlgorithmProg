@@ -282,6 +282,7 @@ int main()
 						printf("\nWrite size of array: ");
 						scanf("%d", &tmp_size);
 						size_arr = &tmp_size;
+						printf("\nWrite custom array with %d numbers.\nArray: ",tmp_size);
 						mas = Generate_custom_mas(*size_arr);
 						buff = (int*)malloc(*size_arr * sizeof(int));
 						printf("\nUnsorted array: ");
