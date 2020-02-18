@@ -14,12 +14,24 @@ void print_mas(int mas[], int size)
 	printf("\n");
 }
 
-int* Generate_mas(int size)
+int* Generate_mas(int size, int min, int max)
 { 
 	int* mas = (int*)malloc(size*sizeof(int));
 	for (int i = 0; i < size; i++)
 	{
-		int r = rand() % 100;
+		int r = min + rand() % (max-min+1);
+		mas[i] = r;
+	}
+	return mas;
+}
+
+int* Generate_custom_mas(int size)
+{
+	int* mas = (int*)malloc(size * sizeof(int));
+	for (int i = 0; i < size; i++)
+	{
+		int r = 0;
+		scanf("%d", &r);
 		mas[i] = r;
 	}
 	return mas;
@@ -257,15 +269,46 @@ int main()
 		{
 			case 1:
 			{
-				printf("\nWrite size of array: ");
-				scanf("%d", &tmp_size);
-
-				size_arr = &tmp_size;
-				mas = Generate_mas(*size_arr);
-				buff = (int*)malloc(*size_arr * sizeof(int));
-				printf("\nUnsorted array: ");
-				print_mas(mas, *size_arr);
-				printf("\n");
+				int c = 0;
+				printf("\n1: Custom array from keyboard\n");
+				printf("2: Random array\n");
+				printf("\nCmd: ");
+				scanf("%d", &c);
+				switch (c)
+				{
+				case 1:
+					{
+						printf("\nWrite size of array: ");
+						scanf("%d", &tmp_size);
+						size_arr = &tmp_size;
+						mas = Generate_custom_mas(*size_arr);
+						buff = (int*)malloc(*size_arr * sizeof(int));
+						printf("\nUnsorted array: ");
+						print_mas(mas, *size_arr);
+						printf("\n");
+						break;
+					}
+				case 2:
+				{
+					printf("\nWrite size of array: ");
+					scanf("%d", &tmp_size);
+					printf("\nWrite range of numbers in array");
+					printf("\nMin: ");
+					int min, max;
+					scanf("%d", &min);
+					printf("\nMax: ");
+					scanf("%d", &max);
+					size_arr = &tmp_size;
+					mas = Generate_mas(*size_arr,min,max);
+					buff = (int*)malloc(*size_arr * sizeof(int));
+					printf("\nUnsorted array: ");
+					print_mas(mas, *size_arr);
+					printf("\n");
+					break;
+				}
+				default:
+					break;
+				}
 				break;
 			}
 
