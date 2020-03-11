@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+п»ї#define _CRT_SECURE_NO_WARNINGS
 
 #include <stdlib.h>
 #include<stdio.h>
@@ -37,20 +37,20 @@ int* Generate_custom_mas(int size)
 	return mas;
 }
 
-void Selection_sort(int mas[], int size) //Сортировка выбором
-//Проходим по всему массиву, ищем минимальный элемент, меняем iым если они разные, сдвигаем i, идем дальше
+void Selection_sort(int mas[], int size) //РЎРѕСЂС‚РёСЂРѕРІРєР° РІС‹Р±РѕСЂРѕРј
+//РџСЂРѕС…РѕРґРёРј РїРѕ РІСЃРµРјСѓ РјР°СЃСЃРёРІСѓ, РёС‰РµРј РјРёРЅРёРјР°Р»СЊРЅС‹Р№ СЌР»РµРјРµРЅС‚, РјРµРЅСЏРµРј iС‹Рј РµСЃР»Рё РѕРЅРё СЂР°Р·РЅС‹Рµ, СЃРґРІРёРіР°РµРј i, РёРґРµРј РґР°Р»СЊС€Рµ
 {
 
 	for (int i = 0; i < size-1; i++)
 	{
 		int min = i; 
-		for (int j = i+1; j < size; j++) //ищем минмальный элемент если он не iый
+		for (int j = i+1; j < size; j++) //РёС‰РµРј РјРёРЅРјР°Р»СЊРЅС‹Р№ СЌР»РµРјРµРЅС‚ РµСЃР»Рё РѕРЅ РЅРµ iС‹Р№
 		{
 			if (mas[j] < mas[min])
 				min = j;
 		}
 
-		if (min != i) //в случае если он не iый меняем его с iым местами
+		if (min != i) //РІ СЃР»СѓС‡Р°Рµ РµСЃР»Рё РѕРЅ РЅРµ iС‹Р№ РјРµРЅСЏРµРј РµРіРѕ СЃ iС‹Рј РјРµСЃС‚Р°РјРё
 		{
 			int tmp = mas[i];
 			mas[i] = mas[min];
@@ -61,37 +61,37 @@ void Selection_sort(int mas[], int size) //Сортировка выбором
 
 }
 
-void Insertion_sort(int mas[], int size) //Сортировка вставкой
-// Начинаем со второго шага проходиться по массиву, пока не найдется элемент большего ключевого
-// сдвигаем все элементы массива вправо, когда нашелся присваиваем ему текущее место(из-за сдвига перед ним
-// не теряем данные
-// Повторяем цикл от 1 до номера количества элементов
+void Insertion_sort(int mas[], int size) //РЎРѕСЂС‚РёСЂРѕРІРєР° РІСЃС‚Р°РІРєРѕР№
+// РќР°С‡РёРЅР°РµРј СЃРѕ РІС‚РѕСЂРѕРіРѕ С€Р°РіР° РїСЂРѕС…РѕРґРёС‚СЊСЃСЏ РїРѕ РјР°СЃСЃРёРІСѓ, РїРѕРєР° РЅРµ РЅР°Р№РґРµС‚СЃСЏ СЌР»РµРјРµРЅС‚ Р±РѕР»СЊС€РµРіРѕ РєР»СЋС‡РµРІРѕРіРѕ
+// СЃРґРІРёРіР°РµРј РІСЃРµ СЌР»РµРјРµРЅС‚С‹ РјР°СЃСЃРёРІР° РІРїСЂР°РІРѕ, РєРѕРіРґР° РЅР°С€РµР»СЃСЏ РїСЂРёСЃРІР°РёРІР°РµРј РµРјСѓ С‚РµРєСѓС‰РµРµ РјРµСЃС‚Рѕ(РёР·-Р·Р° СЃРґРІРёРіР° РїРµСЂРµРґ РЅРёРј
+// РЅРµ С‚РµСЂСЏРµРј РґР°РЅРЅС‹Рµ
+// РџРѕРІС‚РѕСЂСЏРµРј С†РёРєР» РѕС‚ 1 РґРѕ РЅРѕРјРµСЂР° РєРѕР»РёС‡РµСЃС‚РІР° СЌР»РµРјРµРЅС‚РѕРІ
 {
 	for (int i = 1; i < size; i++)
 	{
-		int key = mas[i]; //ключ iый элемент, обновляется в каждой итерации цикла
-		int j = i - 1; // j двиг от i на один
-		while (j >= 0 and mas[j] > key) //ищем место куда вставить ключ
+		int key = mas[i]; //РєР»СЋС‡ iС‹Р№ СЌР»РµРјРµРЅС‚, РѕР±РЅРѕРІР»СЏРµС‚СЃСЏ РІ РєР°Р¶РґРѕР№ РёС‚РµСЂР°С†РёРё С†РёРєР»Р°
+		int j = i - 1; // j РґРІРёРі РѕС‚ i РЅР° РѕРґРёРЅ
+		while (j >= 0 and mas[j] > key) //РёС‰РµРј РјРµСЃС‚Рѕ РєСѓРґР° РІСЃС‚Р°РІРёС‚СЊ РєР»СЋС‡
 		{
-			mas[j + 1] = mas[j]; //сдвиг всех элементов
+			mas[j + 1] = mas[j]; //СЃРґРІРёРі РІСЃРµС… СЌР»РµРјРµРЅС‚РѕРІ
 			j = j - 1;
 		}
-		mas[j + 1] = key; //вставляем ключ на освободившееся место(логически пустое)
+		mas[j + 1] = key; //РІСЃС‚Р°РІР»СЏРµРј РєР»СЋС‡ РЅР° РѕСЃРІРѕР±РѕРґРёРІС€РµРµСЃСЏ РјРµСЃС‚Рѕ(Р»РѕРіРёС‡РµСЃРєРё РїСѓСЃС‚РѕРµ)
 	}
 }
 
-void Binary_insertion_sort(int mas[], int size) //Сортировка бинарной вставкой
+void Binary_insertion_sort(int mas[], int size) //РЎРѕСЂС‚РёСЂРѕРІРєР° Р±РёРЅР°СЂРЅРѕР№ РІСЃС‚Р°РІРєРѕР№
 {
 
 	for (int i = 1; i < size; i++)
 	{
-		int key = mas[i];//ключ, который сравнивается
-		int l = 0; //нижняя граница области
-		int h = i - 1; //верхняя граница облпсти
-		int m = 0; //маркер
+		int key = mas[i];//РєР»СЋС‡, РєРѕС‚РѕСЂС‹Р№ СЃСЂР°РІРЅРёРІР°РµС‚СЃСЏ
+		int l = 0; //РЅРёР¶РЅСЏСЏ РіСЂР°РЅРёС†Р° РѕР±Р»Р°СЃС‚Рё
+		int h = i - 1; //РІРµСЂС…РЅСЏСЏ РіСЂР°РЅРёС†Р° РѕР±Р»РїСЃС‚Рё
+		int m = 0; //РјР°СЂРєРµСЂ
 		while (l < h)
 		{
-			if (key >= mas[m]) //ищем нужное значение для маркера
+			if (key >= mas[m]) //РёС‰РµРј РЅСѓР¶РЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РґР»СЏ РјР°СЂРєРµСЂР°
 				l = m + 1;
 			else
 				h = m;
@@ -99,24 +99,24 @@ void Binary_insertion_sort(int mas[], int size) //Сортировка бинарной вставкой
 		}
 		if (mas[i] > mas[m])
 			m += 1;
-		int result = mas[i]; //сохраняем нужное значение
-		for (int k = i; k > m; k--) //сдвигаем все значения после маркера вправо
+		int result = mas[i]; //СЃРѕС…СЂР°РЅСЏРµРј РЅСѓР¶РЅРѕРµ Р·РЅР°С‡РµРЅРёРµ
+		for (int k = i; k > m; k--) //СЃРґРІРёРіР°РµРј РІСЃРµ Р·РЅР°С‡РµРЅРёСЏ РїРѕСЃР»Рµ РјР°СЂРєРµСЂР° РІРїСЂР°РІРѕ
 		{
 			mas[k] = mas[k - 1];
 		}
-		mas[m] = result; //записываем сохраненное значение в пустое(логически пустое) место
+		mas[m] = result; //Р·Р°РїРёСЃС‹РІР°РµРј СЃРѕС…СЂР°РЅРµРЅРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїСѓСЃС‚РѕРµ(Р»РѕРіРёС‡РµСЃРєРё РїСѓСЃС‚РѕРµ) РјРµСЃС‚Рѕ
 	}
 }
 
 int* Merge_sort(int* u, int* d, int l, int r)
 /*
-* Сортирует массив, используя рекурсивную сортировку слиянием
-* u(up) - указатель на массив, который нужно сортировать
-* d(down) - указатель на массив с, как минимум, таким же размером как у 'u', используется как буфер
-* l(left) - левая граница массива, передайте 0, чтобы сортировать массив с начала
-* r(right) - правая граница массива, передайте длину массива - 1, чтобы сортировать массив до последнего элемента
-* возвращает: указатель на отсортированный массив. Из-за особенностей работы данной реализации
-* отсортированная версия массива может оказаться либо в 'u', либо в 'd'
+* РЎРѕСЂС‚РёСЂСѓРµС‚ РјР°СЃСЃРёРІ, РёСЃРїРѕР»СЊР·СѓСЏ СЂРµРєСѓСЂСЃРёРІРЅСѓСЋ СЃРѕСЂС‚РёСЂРѕРІРєСѓ СЃР»РёСЏРЅРёРµРј
+* u(up) - СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РјР°СЃСЃРёРІ, РєРѕС‚РѕСЂС‹Р№ РЅСѓР¶РЅРѕ СЃРѕСЂС‚РёСЂРѕРІР°С‚СЊ
+* d(down) - СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РјР°СЃСЃРёРІ СЃ, РєР°Рє РјРёРЅРёРјСѓРј, С‚Р°РєРёРј Р¶Рµ СЂР°Р·РјРµСЂРѕРј РєР°Рє Сѓ 'u', РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РєР°Рє Р±СѓС„РµСЂ
+* l(left) - Р»РµРІР°СЏ РіСЂР°РЅРёС†Р° РјР°СЃСЃРёРІР°, РїРµСЂРµРґР°Р№С‚Рµ 0, С‡С‚РѕР±С‹ СЃРѕСЂС‚РёСЂРѕРІР°С‚СЊ РјР°СЃСЃРёРІ СЃ РЅР°С‡Р°Р»Р°
+* r(right) - РїСЂР°РІР°СЏ РіСЂР°РЅРёС†Р° РјР°СЃСЃРёРІР°, РїРµСЂРµРґР°Р№С‚Рµ РґР»РёРЅСѓ РјР°СЃСЃРёРІР° - 1, С‡С‚РѕР±С‹ СЃРѕСЂС‚РёСЂРѕРІР°С‚СЊ РјР°СЃСЃРёРІ РґРѕ РїРѕСЃР»РµРґРЅРµРіРѕ СЌР»РµРјРµРЅС‚Р°
+* РІРѕР·РІСЂР°С‰Р°РµС‚: СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РѕС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅРЅС‹Р№ РјР°СЃСЃРёРІ. РР·-Р·Р° РѕСЃРѕР±РµРЅРЅРѕСЃС‚РµР№ СЂР°Р±РѕС‚С‹ РґР°РЅРЅРѕР№ СЂРµР°Р»РёР·Р°С†РёРё
+* РѕС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅРЅР°СЏ РІРµСЂСЃРёСЏ РјР°СЃСЃРёРІР° РјРѕР¶РµС‚ РѕРєР°Р·Р°С‚СЊСЃСЏ Р»РёР±Рѕ РІ 'u', Р»РёР±Рѕ РІ 'd'
 */
 {
 	if (l == r)
@@ -125,10 +125,10 @@ int* Merge_sort(int* u, int* d, int l, int r)
 		return d;
 	}
 	int m = (l + r) / 2;
-	// разделение и сортировка
+	// СЂР°Р·РґРµР»РµРЅРёРµ Рё СЃРѕСЂС‚РёСЂРѕРІРєР°
 	int* l_buff = Merge_sort(u, d, l, m);
 	int* r_buff = Merge_sort(u, d, m + 1, r);
-	// слияние двух отсортированных половин
+	// СЃР»РёСЏРЅРёРµ РґРІСѓС… РѕС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅРЅС‹С… РїРѕР»РѕРІРёРЅ
 	int* target = l_buff == u ? d : u;
 	int l_cur = l, r_cur = m + 1;
 	for (int i = l; i <= r; i++)
@@ -160,30 +160,30 @@ int* Merge_sort(int* u, int* d, int l, int r)
 	return target;
 }
 
-//сортировка обменом, проходим по массиву, меняем соселние элементы местами если один больше другого
-// соотвественно на первой итерации на верх всплывает максимум и граница цикла уменьшается на один
+//СЃРѕСЂС‚РёСЂРѕРІРєР° РѕР±РјРµРЅРѕРј, РїСЂРѕС…РѕРґРёРј РїРѕ РјР°СЃСЃРёРІСѓ, РјРµРЅСЏРµРј СЃРѕСЃРµР»РЅРёРµ СЌР»РµРјРµРЅС‚С‹ РјРµСЃС‚Р°РјРё РµСЃР»Рё РѕРґРёРЅ Р±РѕР»СЊС€Рµ РґСЂСѓРіРѕРіРѕ
+// СЃРѕРѕС‚РІРµСЃС‚РІРµРЅРЅРѕ РЅР° РїРµСЂРІРѕР№ РёС‚РµСЂР°С†РёРё РЅР° РІРµСЂС… РІСЃРїР»С‹РІР°РµС‚ РјР°РєСЃРёРјСѓРј Рё РіСЂР°РЅРёС†Р° С†РёРєР»Р° СѓРјРµРЅСЊС€Р°РµС‚СЃСЏ РЅР° РѕРґРёРЅ
 void Bubble_sort(int mas[], int size)
 {
 	bool condition = false;
 	for (int i = 0; i < size-1; i++)
 	{
 		condition = true;
-		for (int j = 0; j < size - i -1;j++) // на каждой итерациии всплывает максимум
+		for (int j = 0; j < size - i -1;j++) // РЅР° РєР°Р¶РґРѕР№ РёС‚РµСЂР°С†РёРёРё РІСЃРїР»С‹РІР°РµС‚ РјР°РєСЃРёРјСѓРј
 		{
-			if (mas[j] > mas[j + 1]) //обмен между соседними если предыдущий больше последующего
+			if (mas[j] > mas[j + 1]) //РѕР±РјРµРЅ РјРµР¶РґСѓ СЃРѕСЃРµРґРЅРёРјРё РµСЃР»Рё РїСЂРµРґС‹РґСѓС‰РёР№ Р±РѕР»СЊС€Рµ РїРѕСЃР»РµРґСѓСЋС‰РµРіРѕ
 			{
 				int tmp = mas[j];
 				mas[j] = mas[j + 1];
 				mas[j+1] = tmp;
-				condition = false; //Условие Айверсона пока не соблюдается
+				condition = false; //РЈСЃР»РѕРІРёРµ РђР№РІРµСЂСЃРѕРЅР° РїРѕРєР° РЅРµ СЃРѕР±Р»СЋРґР°РµС‚СЃСЏ
 			}
 		}
-		if (condition)//выходим по условию если не было перестановок
+		if (condition)//РІС‹С…РѕРґРёРј РїРѕ СѓСЃР»РѕРІРёСЋ РµСЃР»Рё РЅРµ Р±С‹Р»Рѕ РїРµСЂРµСЃС‚Р°РЅРѕРІРѕРє
 			break;
 	}
 }
 
-//Шейкерная сортировка, проходим по массиву обменом сначала в одну,потом в другую сторону и так чередуем
+//РЁРµР№РєРµСЂРЅР°СЏ СЃРѕСЂС‚РёСЂРѕРІРєР°, РїСЂРѕС…РѕРґРёРј РїРѕ РјР°СЃСЃРёРІСѓ РѕР±РјРµРЅРѕРј СЃРЅР°С‡Р°Р»Р° РІ РѕРґРЅСѓ,РїРѕС‚РѕРј РІ РґСЂСѓРіСѓСЋ СЃС‚РѕСЂРѕРЅСѓ Рё С‚Р°Рє С‡РµСЂРµРґСѓРµРј
 void Shaker_sort(int mas[], int size)
 {
 	bool condition = false;
@@ -192,61 +192,215 @@ void Shaker_sort(int mas[], int size)
 	while (left < right)
 	{
 		bool condition = true;
-		for (int i = left; i < right; i++) //Пузырьковая на максимум
+		for (int i = left; i < right; i++) //РџСѓР·С‹СЂСЊРєРѕРІР°СЏ РЅР° РјР°РєСЃРёРјСѓРј
 		{
 			if (mas[i] > mas[i + 1]) 
 			{
 				int tmp = mas[i];
 				mas[i] = mas[i + 1];
 				mas[i + 1] = tmp;
-				condition = false; //Условие Айверсона пока не соблюдается
+				condition = false; //РЈСЃР»РѕРІРёРµ РђР№РІРµСЂСЃРѕРЅР° РїРѕРєР° РЅРµ СЃРѕР±Р»СЋРґР°РµС‚СЃСЏ
 			}
 		}
 		right--;
-		for (int i = right; i > left; i--) //Пузырьковая на минимум
+		for (int i = right; i > left; i--) //РџСѓР·С‹СЂСЊРєРѕРІР°СЏ РЅР° РјРёРЅРёРјСѓРј
 		{
 			if (mas[i-1] > mas[i]) 
 			{
 				int tmp = mas[i];
 				mas[i] = mas[i - 1];
 				mas[i - 1] = tmp;
-				condition = false; //Условие Айверсона пока не соблюдается
+				condition = false; //РЈСЃР»РѕРІРёРµ РђР№РІРµСЂСЃРѕРЅР° РїРѕРєР° РЅРµ СЃРѕР±Р»СЋРґР°РµС‚СЃСЏ
 			}
 		}
 		left++;
-		if (condition)//выходим по условию если не было перестановок
+		if (condition)//РІС‹С…РѕРґРёРј РїРѕ СѓСЃР»РѕРІРёСЋ РµСЃР»Рё РЅРµ Р±С‹Р»Рѕ РїРµСЂРµСЃС‚Р°РЅРѕРІРѕРє
 			break;
 	}
 }
 
-//Сортировка Шелла
+//РЎРѕСЂС‚РёСЂРѕРІРєР° РЁРµР»Р»Р°
 void Shell_sort(int mas[], int size)
 {
 	bool condition = false;
-	int d = size / 2; //шаг изначально в пол массива
+	int d = size / 2; //С€Р°Рі РёР·РЅР°С‡Р°Р»СЊРЅРѕ РІ РїРѕР» РјР°СЃСЃРёРІР°
 	while(true)
 	{
 		condition = true;
 		for (int j = 0; j < size - d; j++) 
 		{
-			if (mas[j] > mas[j + d]) //обмен между соседними по шагу d если предыдущий больше последующего
+			if (mas[j] > mas[j + d]) //РѕР±РјРµРЅ РјРµР¶РґСѓ СЃРѕСЃРµРґРЅРёРјРё РїРѕ С€Р°РіСѓ d РµСЃР»Рё РїСЂРµРґС‹РґСѓС‰РёР№ Р±РѕР»СЊС€Рµ РїРѕСЃР»РµРґСѓСЋС‰РµРіРѕ
 			{
 				int tmp = mas[j];
 				mas[j] = mas[j + d];
 				mas[j + d] = tmp;
-				condition = false; //Условие Айверсона пока не соблюдается
+				condition = false; //РЈСЃР»РѕРІРёРµ РђР№РІРµСЂСЃРѕРЅР° РїРѕРєР° РЅРµ СЃРѕР±Р»СЋРґР°РµС‚СЃСЏ
 			}
 		}
-		if (d>1) //целочисленно делим шаг попалам, пока не станет 1 и сортировка не превратиться в пузырьковую
+		if (d>1) //С†РµР»РѕС‡РёСЃР»РµРЅРЅРѕ РґРµР»РёРј С€Р°Рі РїРѕРїР°Р»Р°Рј, РїРѕРєР° РЅРµ СЃС‚Р°РЅРµС‚ 1 Рё СЃРѕСЂС‚РёСЂРѕРІРєР° РЅРµ РїСЂРµРІСЂР°С‚РёС‚СЊСЃСЏ РІ РїСѓР·С‹СЂСЊРєРѕРІСѓСЋ
 			d = d / 2;
-		if (condition && d ==1)//выходим по условию если не было перестановок
+		if (condition && d ==1)//РІС‹С…РѕРґРёРј РїРѕ СѓСЃР»РѕРІРёСЋ РµСЃР»Рё РЅРµ Р±С‹Р»Рѕ РїРµСЂРµСЃС‚Р°РЅРѕРІРѕРє
 			break;
 	}
 }
 
+/*
+algorithm partition(A, low, high) is
+	pivot := A[(low + high) / 2]
+	i := low - 1
+	j := high + 1
+	loop forever
+		do
+			i := i + 1
+		while A[i] < pivot
+
+		do
+			j := j - 1
+		while A[j] > pivot
+
+		if i >= j then
+			return j
+
+		swap A[i] with A[j]*/
+
+
+void Quick_sort(int mas[], int l, int h)
+{
+	int index = (l + h) / 2;
+	int pivot = mas[index];
+	int tmp;
+	int i = l;
+	int j = h;
+	do {
+		while (mas[i] < pivot)
+			i++;
+		while (mas[j] > pivot)
+			j--;
+
+		if (i <= j)
+		{
+			if (i < j)
+			{
+				tmp = mas[i];
+				mas[i] = mas[j];
+				mas[j] = tmp;
+			}
+			i++;
+			j--;
+		}
+	} while (i <= j);
+
+	if (i < h)
+		Quick_sort(mas, i, h);
+	if (l < j)
+		Quick_sort(mas, l, j);
+	}
+
+
+/*
+int* Sort(int* A, int size) {
+
+	int* tree = new int[size * 2];
+	int i;
+
+	int k, j = 0;
+
+	while (j < N) {
+		tree[size + j] = A[j];
+		++j;
+	}
+
+	j = size;
+	while (j < 2 * size)
+	{
+		if (tree[j] >= tree[j + 1])  tree[j / 2] = j;
+		else  tree[j / 2] = j + 1;
+		j += 2;
+	}
+
+	k = size / 2;
+	while (k >= 1)
+	{
+		j = k;
+		while (j < 2 * k)
+		{
+			if (tree[tree[j]] >= tree[tree[j + 1]])
+				tree[j / 2] = tree[j];
+			else  tree[j / 2] = tree[j + 1];
+			j += 2;
+		}
+		k /= 2;
+	}
+
+	for (k = N; k >= 2; --k)
+	{
+		i = tree[1];
+		A[k - 1] = tree[i];
+		tree[i] = -MAXINT;
+
+
+		if (i % 2)  tree[i / 2] = i - 1;
+		else  tree[i / 2] = i + 1;
+
+		i /= 2;
+
+		while (i > 1)
+		{ //j - ГЎpГ ГІ i.
+			if (i % 2)  j = i - 1;
+			else  j = i + 1;
+			if (tree[tree[i]] > tree[tree[j]])  tree[i / 2] = tree[i];
+			else  tree[i / 2] = tree[j];
+			i /= 2;
+		}
+	}
+	A[0] = tree[tree[1]];
+	return A;
+}
+*/
+
+int Sequential_search(int mas[], int size, int val)
+{
+	for (int i = 0; i < size; i++)
+	{
+		if (mas[i] == val)
+		{
+			printf("Successful! Num is %d number (starts from 0) in array.\n", i);
+			return i;
+		}
+	}
+	printf("There is no match in array\n");
+	return NULL;
+}
+
+int Binary_search(int mas[], int size, int val)
+{
+	for (int i = 0; i < size; i++)
+	{
+		if (mas[i] == val)
+		{
+			printf("Successful! Num is %d number (starts from 0) in array.\n", i);
+			return i;
+		}
+	}
+	printf("There is no match in array\n");
+	return NULL;
+}
+
+bool Is_sorted(int mas[], int size)
+{
+	for (int i = 0; i < size - 1; i++)
+		if (mas[i] < mas[i + 1])
+			continue;
+		else
+			return false;
+	return true;
+}
+
+
 int main()
 {
 	srand(time(NULL));
+	clock_t time;
 	printf("***************************\nPROGRAM FOR LAB1 ALGORITHMS\n***************************\n");
 	int n=0, tmp_size=0;
 	int* mas = {};
@@ -260,8 +414,10 @@ int main()
 		{
 			break;
 		}
-		printf("1: Generate new array\n");
-		printf("2: Sort array\n");
+		printf("\n1: Generate new array\n");
+		printf("2: Show array\n");
+		printf("3: Sort array\n");
+		printf("4: Find in array\n");
 		printf("0: Exit\n");
 		printf("\nCmd: ");
 		scanf("%d", &n);
@@ -273,6 +429,7 @@ int main()
 				printf("\n1: Custom array from keyboard\n");
 				printf("2: Random array with range\n");
 				printf("3: Random array with default generation\n");
+				printf("0: Cancel\n");
 				printf("\nCmd: ");
 				scanf("%d", &c);
 				switch (c)
@@ -283,18 +440,21 @@ int main()
 						scanf("%d", &tmp_size);
 						size_arr = &tmp_size;
 						printf("\nWrite custom array with %d numbers.\nArray: ",tmp_size);
+					//	start = clock();
 						mas = Generate_custom_mas(*size_arr);
+					//	stop = clock();
 						buff = (int*)malloc(*size_arr * sizeof(int));
 						printf("\nUnsorted array: ");
-						print_mas(mas, *size_arr);
+					//	print_mas(mas, *size_arr);
 						printf("\n");
+					//	printf("Time to create %f seconds", (stop - start) / CLK_TCK);
 						break;
 					}
 				case 2:
 				{
 					printf("\nWrite size of array: ");
 					scanf("%d", &tmp_size);
-					printf("\nWrite range of numbers in array");
+					printf("\nWrite range of numbers in array\n");
 					printf("\nMin: ");
 					int min, max;
 					scanf("%d", &min);
@@ -304,7 +464,7 @@ int main()
 					mas = Generate_mas(*size_arr,min,max);
 					buff = (int*)malloc(*size_arr * sizeof(int));
 					printf("\nUnsorted array: ");
-					print_mas(mas, *size_arr);
+					//print_mas(mas, *size_arr);
 					printf("\n");
 					break;
 				}
@@ -316,7 +476,7 @@ int main()
 					mas = Generate_mas(*size_arr, 0, 10);
 					buff = (int*)malloc(*size_arr * sizeof(int));
 					printf("\nUnsorted array: ");
-					print_mas(mas, *size_arr);
+					//print_mas(mas, *size_arr);
 					printf("\n");
 					break;
 				}
@@ -325,22 +485,32 @@ int main()
 				}
 				break;
 			}
-
-			case 2:
+			case 2: {
+				if (!mas)
+				{
+					printf("\nNot generated array!\n\n");
+					break;
+				}
+				printf("\nCurrent array:\n");
+				print_mas(mas, *size_arr);
+				break;
+			}
+			case 3:
 			{
 				if (!mas)
 				{
 					printf("\nNot generated array!\n\n");
 					break;
 				}
-				printf("\n1:Selection sort\n");
-				printf("2:Insertion sort\n");
-				printf("3:Binary insertion sort\n"); 
-				printf("4:Merge sort\n");
-				printf("5:Bubble sort\n");
-				printf("6:Shaker sort\n");
-				printf("7:Shell sort\n");
-				printf("0:Cancel\n");
+				printf("\n1: Selection sort\n");
+				printf("2: Insertion sort\n");
+				printf("3: Binary insertion sort\n"); 
+				printf("4: Merge sort\n");
+				printf("5: Bubble sort\n");
+				printf("6: Shaker sort\n");
+				printf("7: Shell sort\n");
+				printf("8: Quick sort\n");
+				printf("0: Cancel\n");
 				printf("\nCmd: ");
 				int cmd = 0;
 				scanf("%d", &cmd);
@@ -349,83 +519,127 @@ int main()
 				case 1:
 				{
 					
-					printf("\nUnsorted array: ");
-					print_mas(mas, *size_arr);
+				//	printf("\nUnsorted array: ");
+				//	print_mas(mas, *size_arr);
+					time = clock();
 					Selection_sort(mas, *size_arr);
-					printf("Sorted array:   ");
-					print_mas(mas, *size_arr);
+					time = clock() - time;
+				//	printf("Sorted array:   ");
+				//	print_mas(mas, *size_arr);
+					printf("\n");
+					printf("Time of sort %f seconds", double(time) / CLOCKS_PER_SEC);
 					printf("\n");
 					break;
 				}
 				case 2:
 				{
 					
-					printf("\nUnsorted array: ");
-					print_mas(mas, *size_arr);
+				//	printf("\nUnsorted array: ");
+				//	print_mas(mas, *size_arr);
+					time = clock();
 					Insertion_sort(mas, *size_arr);
+					time = clock() - time;
 					printf("\n");
-					printf("Sorted array:   ");
-					print_mas(mas, *size_arr);
+				//	printf("Sorted array:   ");
+				//	print_mas(mas, *size_arr);
+				//	printf("\n");
+					printf("Time of sort %f seconds", double(time) / CLOCKS_PER_SEC);
 					printf("\n");
 					break;
 				}
 				case 3:
 				{
 					
-					printf("\nUnsorted array: ");
-					print_mas(mas, *size_arr);
+				//	printf("\nUnsorted array: ");
+				//	print_mas(mas, *size_arr);
+					time = clock();
 					Binary_insertion_sort(mas, *size_arr);
 					printf("\n");
-					printf("Sorted array:   ");
-					print_mas(mas, *size_arr);
+					time = clock() - time;
 					printf("\n");
+					//	printf("Sorted array:   ");
+					//	print_mas(mas, *size_arr);
+					//	printf("\n");
+					printf("Time of sort %f seconds", double(time) / CLOCKS_PER_SEC);
 					break;
 				}
 				case 4:
 				{
 					
-					printf("\nUnsorted array: ");
-					print_mas(mas, *size_arr);
+				//	printf("\nUnsorted array: ");
+				//	print_mas(mas, *size_arr);
+					time = clock();
 					mas = Merge_sort(mas, buff, 0, *size_arr - 1);
 					printf("\n");
-					printf("Sorted array:   ");
-					print_mas(mas, *size_arr);
+					time = clock() - time;
 					printf("\n");
+					//	printf("Sorted array:   ");
+					//	print_mas(mas, *size_arr);
+					//	printf("\n");
+					printf("Time of sort %f seconds", double(time) / CLOCKS_PER_SEC);
 					break;
 				}
 				case 5:
 				{
 
-					printf("\nUnsorted array: ");
-					print_mas(mas, *size_arr);
+				//	printf("\nUnsorted array: ");
+				//	print_mas(mas, *size_arr);
+					time = clock();
 					Bubble_sort(mas, *size_arr);
+					time = clock() - time;
 					printf("\n");
-					printf("Sorted array:   ");
-					print_mas(mas, *size_arr);
+					//	printf("Sorted array:   ");
+					//	print_mas(mas, *size_arr);
+					//	printf("\n");
+					printf("Time of sort %f seconds", double(time) / CLOCKS_PER_SEC);
 					printf("\n");
 					break;
 				}
 				case 6:
 				{
 
-					printf("\nUnsorted array: ");
-					print_mas(mas, *size_arr);
+				//	printf("\nUnsorted array: ");
+				//	print_mas(mas, *size_arr);
+					time = clock();
 					Shaker_sort(mas, *size_arr);
+					time = clock() - time;
 					printf("\n");
-					printf("Sorted array:   ");
-					print_mas(mas, *size_arr);
+					//	printf("Sorted array:   ");
+					//	print_mas(mas, *size_arr);
+					//	printf("\n");
+					printf("Time of sort %f seconds", double(time) / CLOCKS_PER_SEC);
 					printf("\n");
 					break;
 				}
 				case 7:
 				{
 
-					printf("\nUnsorted array: ");
-					print_mas(mas, *size_arr);
+				//	printf("\nUnsorted array: ");
+				//	print_mas(mas, *size_arr);
+					time = clock();
 					Shell_sort(mas, *size_arr);
+					time = clock() - time;
 					printf("\n");
-					printf("Sorted array:   ");
-					print_mas(mas, *size_arr);
+					//	printf("Sorted array:   ");
+					//	print_mas(mas, *size_arr);
+					//	printf("\n");
+					printf("Time of sort %f seconds", double(time) / CLOCKS_PER_SEC);
+					printf("\n");
+					break;
+				}
+				case 8:
+				{
+
+				//	printf("\nUnsorted array: ");
+				//	print_mas(mas, *size_arr);
+					time = clock();
+					Quick_sort(mas, 0,*size_arr-1);
+					time = clock() - time;
+					printf("\n");
+					//	printf("Sorted array:   ");
+					//	print_mas(mas, *size_arr);
+					//	printf("\n");
+					printf("Time of sort %f seconds", double(time) / CLOCKS_PER_SEC);
 					printf("\n");
 					break;
 				}
@@ -434,6 +648,33 @@ int main()
 				}
 				break;
 			}
+		case 4:
+		{
+			if (!mas)
+			{
+				printf("\nNot generated array!\n\n");
+				break;
+			}
+			printf("\n1: Sequential search\n");
+			printf("0: Cancel\n");
+			printf("\nCmd: ");
+			int cmd = 0;
+			scanf("%d", &cmd);
+			switch (cmd)
+			{
+			case 1:
+			{
+				printf("\nWrite key to search: ");
+				int val;
+				scanf("%d", &val);
+				Sequential_search(mas, *size_arr, val);
+				break;
+			}
+			default:
+				break;
+			}
+			break;
+		}
 		case 0:
 			exit_f = true;
 
