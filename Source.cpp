@@ -453,7 +453,7 @@ int Interpolation_search(int mas[], int size, int val)
 			return m;
 		}
 	}
-	if (mas[l == val])
+	if (mas[l] == val)
 	{
 		printf("Successful! Num is %d number (starts from 0) in array.\n", l);
 		return l;
@@ -470,7 +470,35 @@ int Interpolation_search(int mas[], int size, int val)
 	}
 }
 
+/*
+bool Hashing_search(int* mas,int size, int val)
+{
+	bool answer = false;
+	int max_key = 0;
+	for (int i = 0; i < size; i++)
+		if (mas[i] > max_key) max_key = mas[i];
+	int m = max_key / 2;
 
+	int** matrix = (int**)malloc(m*sizeof(int));
+	for (int i = 0; i < m; i++)
+	{
+		matrix[i] = (int*)malloc(1* sizeof(int));
+		matrix[i][0] = 1;
+	}
+
+
+	int key_hash = val % m;
+	for (int i = 1; i < matrix[key_hash][0]; i++)
+	{
+		if (matrix[key_hash][i] == val) answer = true;
+	}
+
+	for (int i = 0; i < m; i++)
+		delete matrix[i];
+
+	return answer;
+}
+*/
 bool Is_sorted(int mas[], int size)
 {
 	for (int i = 0; i < size - 1; i++)
@@ -479,7 +507,16 @@ bool Is_sorted(int mas[], int size)
 	return true;
 }
 
-
+bool Protection_for_sorted_array(int mas[], int size)
+{
+	if (!Is_sorted(mas, size))
+	{
+		printf("\nArray not sorted, please sort array before this search!\n");
+		return false;
+	}
+	else
+		return true;
+}
 
 int main()
 {
@@ -759,11 +796,9 @@ int main()
 			}
 			case 2:
 			{
-				if (!Is_sorted(mas, *size_arr))
-				{
-					printf("\nArray not sorted, please sort array before this search!\n");
+				if (!Protection_for_sorted_array(mas, *size_arr))
 					break;
-				}
+				
 
 				printf("\nWrite key to search: ");
 				int val;
@@ -773,11 +808,8 @@ int main()
 			}
 			case 3:
 			{
-				if (!Is_sorted(mas, *size_arr))
-				{
-					printf("\nArray not sorted, please sort array before this search!\n");
+				if (!Protection_for_sorted_array(mas, *size_arr))
 					break;
-				}
 
 				printf("\nWrite key to search: ");
 				int val;
@@ -787,11 +819,8 @@ int main()
 			}
 			case 4:
 			{
-				if (!Is_sorted(mas, *size_arr))
-				{
-					printf("\nArray not sorted, please sort array before this search!\n");
+				if (!Protection_for_sorted_array(mas, *size_arr))
 					break;
-				}
 
 				printf("\nWrite key to search: ");
 				int val;
