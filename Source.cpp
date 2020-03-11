@@ -435,6 +435,41 @@ int Fibonachi_search(int mas[], int l,int r, int val)
 	}
 }
 
+int Interpolation_search(int mas[], int size, int val)
+{
+	int l = 0;
+	int r = size;
+	int m;
+	while ((mas[l] < val) && (val < mas[r]))
+	{
+		m = l + (val - mas[l]) * (r - l) / (mas[r] - mas[l]);
+		if (mas[m] < val)
+			l = m + 1;
+		else if (mas[m] > val)
+			r = m - 1;
+		else
+		{
+			printf("Successful! Num is %d number (starts from 0) in array.\n", m);
+			return m;
+		}
+	}
+	if (mas[l == val])
+	{
+		printf("Successful! Num is %d number (starts from 0) in array.\n", l);
+		return l;
+	}
+	else if (mas[r] == val)
+	{
+		printf("Successful! Num is %d number (starts from 0) in array.\n", r);
+		return r;
+	}
+	else
+	{
+		printf("There is no key in array\n");
+		return NULL;
+	}
+}
+
 
 bool Is_sorted(int mas[], int size)
 {
@@ -443,6 +478,7 @@ bool Is_sorted(int mas[], int size)
 			return false;
 	return true;
 }
+
 
 
 int main()
@@ -511,7 +547,7 @@ int main()
 					size_arr = &tmp_size;
 					mas = Generate_mas(*size_arr,min,max);
 					buff = (int*)malloc(*size_arr * sizeof(int));
-					printf("\nUnsorted array: ");
+					//printf("\nUnsorted array: ");
 					//print_mas(mas, *size_arr);
 					printf("\n");
 					break;
@@ -521,9 +557,9 @@ int main()
 					printf("\nWrite size of array: ");
 					scanf("%d", &tmp_size);
 					size_arr = &tmp_size;
-					mas = Generate_mas(*size_arr, 0, 10);
+					mas = Generate_mas(*size_arr, 1, 10);
 					buff = (int*)malloc(*size_arr * sizeof(int));
-					printf("\nUnsorted array: ");
+					//printf("\nUnsorted array: ");
 					//print_mas(mas, *size_arr);
 					printf("\n");
 					break;
@@ -706,6 +742,7 @@ int main()
 			printf("\n1: Sequential search\n");
 			printf("2: Binary search\n");
 			printf("3: Fibonachi search\n");
+			printf("4: Interpolation search\n");
 			printf("0: Cancel\n");
 			printf("\nCmd: ");
 			int cmd = 0;
@@ -746,6 +783,20 @@ int main()
 				int val;
 				scanf("%d", &val);
 				Fibonachi_search(mas, 0,*size_arr -1, val);
+				break;
+			}
+			case 4:
+			{
+				if (!Is_sorted(mas, *size_arr))
+				{
+					printf("\nArray not sorted, please sort array before this search!\n");
+					break;
+				}
+
+				printf("\nWrite key to search: ");
+				int val;
+				scanf("%d", &val);
+				Interpolation_search(mas,*size_arr-1, val);
 				break;
 			}
 			default:
