@@ -374,24 +374,72 @@ int Sequential_search(int mas[], int size, int val)
 
 int Binary_search(int mas[], int size, int val)
 {
-	for (int i = 0; i < size; i++)
+	int l = 0;
+	int r = size;
+	int m = 0;
+	while (l < r)
 	{
+		m = l + (r - l) / 2;
+		if (mas[m] == val)
+		{
+			printf("Successful! Num is %d number (starts from 0) in array.\n", m);
+			return m;
+		}
+		if (mas[m] > val)
+			r = m;
+		else
+			l = m + 1;
+	}
+	printf("There is no key in array\n");
+	return NULL;
+}
+
+int fibonacchi(int n) {
+	if (n == 0) return 0;
+
+	if (n == 1) return 1;
+	return fibonacchi(n - 2) + fibonacchi(n - 1);
+}
+
+int Fibonachi_search(int mas[], int l,int r, int val)
+{
+	int k = 1;
+	int i = 0;
+
+	while (true)
+	{
+		i = l + fibonacchi(k)-1;
+
 		if (mas[i] == val)
 		{
 			printf("Successful! Num is %d number (starts from 0) in array.\n", i);
 			return i;
 		}
+		if (i == r)
+		{
+			printf("There is no key in array\n");
+			return NULL;
+		}
+		if ((mas[i] < val))
+		{
+			if (i < r)
+			k++;
+			else
+				return Fibonachi_search(mas,l+ fibonacchi(k - 1), r, val);
+
+		}
+		else
+		{
+			return Fibonachi_search(mas,l+ fibonacchi(k - 1), i, val);
+		}
 	}
-	printf("There is no match in array\n");
-	return NULL;
 }
+
 
 bool Is_sorted(int mas[], int size)
 {
 	for (int i = 0; i < size - 1; i++)
-		if (mas[i] < mas[i + 1])
-			continue;
-		else
+		if (!(mas[i] <= mas[i + 1]))
 			return false;
 	return true;
 }
@@ -656,6 +704,8 @@ int main()
 				break;
 			}
 			printf("\n1: Sequential search\n");
+			printf("2: Binary search\n");
+			printf("3: Fibonachi search\n");
 			printf("0: Cancel\n");
 			printf("\nCmd: ");
 			int cmd = 0;
@@ -668,6 +718,34 @@ int main()
 				int val;
 				scanf("%d", &val);
 				Sequential_search(mas, *size_arr, val);
+				break;
+			}
+			case 2:
+			{
+				if (!Is_sorted(mas, *size_arr))
+				{
+					printf("\nArray not sorted, please sort array before this search!\n");
+					break;
+				}
+
+				printf("\nWrite key to search: ");
+				int val;
+				scanf("%d", &val);
+				Binary_search(mas, *size_arr, val);
+				break;
+			}
+			case 3:
+			{
+				if (!Is_sorted(mas, *size_arr))
+				{
+					printf("\nArray not sorted, please sort array before this search!\n");
+					break;
+				}
+
+				printf("\nWrite key to search: ");
+				int val;
+				scanf("%d", &val);
+				Fibonachi_search(mas, 0,*size_arr -1, val);
 				break;
 			}
 			default:
