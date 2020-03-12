@@ -5,6 +5,7 @@
 #include <time.h>
 
 
+
 void print_mas(int mas[], int size)
 {
 	for (int i = 0; i < size; i++)
@@ -23,6 +24,17 @@ int* Generate_mas(int size, int min, int max)
 		mas[i] = r;
 	}
 	return mas;
+}
+
+
+int* Copy_mas(int* mas, int size)
+{
+	int* new_mas = (int*)malloc(size * sizeof(int));
+	for (int i = 0; i < size; i++)
+	{
+		new_mas[i] = mas[i];
+	}
+	return new_mas;
 }
 
 int* Generate_custom_mas(int size)
@@ -518,10 +530,181 @@ bool Protection_for_sorted_array(int mas[], int size)
 		return true;
 }
 
+
+void Selection_sort_case(int* mas, int size, clock_t time)
+{
+	//	printf("\nUnsorted array: ");
+			//	print_mas(mas, *size_arr);
+	time = clock();
+	Selection_sort(mas, size);
+	time = clock() - time;
+	//	printf("Sorted array:   ");
+	//	print_mas(mas, *size_arr);
+	printf("\n");
+	printf("Time of sort %f seconds", double(time) / CLOCKS_PER_SEC);
+	printf("\n");
+
+}
+
+void Insertion_sort_case(int* mas, int size, clock_t time)
+{
+	//	printf("\nUnsorted array: ");
+			//	print_mas(mas, *size_arr);
+	time = clock();
+	Insertion_sort(mas, size);
+	time = clock() - time;
+	//	printf("Sorted array:   ");
+	//	print_mas(mas, *size_arr);
+	printf("\n");
+	printf("Time of sort %f seconds", double(time) / CLOCKS_PER_SEC);
+	printf("\n");
+
+}
+
+void Binary_insertion_sort_case(int* mas, int size, clock_t time)
+{
+	//	printf("\nUnsorted array: ");
+			//	print_mas(mas, *size_arr);
+	time = clock();
+	Binary_insertion_sort(mas, size);
+	time = clock() - time;
+	//	printf("Sorted array:   ");
+	//	print_mas(mas, *size_arr);
+	printf("\n");
+	printf("Time of sort %f seconds", double(time) / CLOCKS_PER_SEC);
+	printf("\n");
+
+}
+
+void Merge_sort_case(int* mas, int* buff, int size, clock_t time)
+{
+	//	printf("\nUnsorted array: ");
+			//	print_mas(mas, *size_arr);
+	time = clock();
+	mas = Merge_sort(mas, buff, 0, size - 1);
+	time = clock() - time;
+	//	printf("Sorted array:   ");
+	//	print_mas(mas, *size_arr);
+	printf("\n");
+	printf("Time of sort %f seconds", double(time) / CLOCKS_PER_SEC);
+	printf("\n");
+
+}
+
+void Bubble_sort_case(int* mas, int size, clock_t time)
+{
+	//	printf("\nUnsorted array: ");
+			//	print_mas(mas, *size_arr);
+	time = clock();
+	Bubble_sort(mas, size);
+	time = clock() - time;
+	//	printf("Sorted array:   ");
+	//	print_mas(mas, *size_arr);
+	printf("\n");
+	printf("Time of sort %f seconds", double(time) / CLOCKS_PER_SEC);
+	printf("\n");
+
+}
+
+void Shaker_sort_case(int* mas, int size, clock_t time)
+{
+	//	printf("\nUnsorted array: ");
+			//	print_mas(mas, *size_arr);
+	time = clock();
+	Shaker_sort(mas, size);
+	time = clock() - time;
+	//	printf("Sorted array:   ");
+	//	print_mas(mas, *size_arr);
+	printf("\n");
+	printf("Time of sort %f seconds", double(time) / CLOCKS_PER_SEC);
+	printf("\n");
+
+}
+
+void Shell_sort_case(int* mas, int size, clock_t time)
+{
+	//	printf("\nUnsorted array: ");
+			//	print_mas(mas, *size_arr);
+	time = clock();
+	Shell_sort(mas, size);
+	time = clock() - time;
+	//	printf("Sorted array:   ");
+	//	print_mas(mas, *size_arr);
+	printf("\n");
+	printf("Time of sort %f seconds", double(time) / CLOCKS_PER_SEC);
+	printf("\n");
+	
+}
+
+void Quick_sort_case(int* mas, int size, clock_t time)
+{
+	time = clock();
+	Quick_sort(mas, 0, size - 1);
+	time = clock() - time;
+	printf("\n");
+	//	printf("Sorted array:   ");
+	//	print_mas(mas, *size_arr);
+	//	printf("\n");
+	printf("Time of sort %f seconds", double(time) / CLOCKS_PER_SEC);
+	printf("\n");
+}
+
+void Sequential_search_case(int* mas,int size, clock_t time)
+{
+	printf("\nWrite key to search: ");
+	int val;
+	scanf("%d", &val);
+	time = clock();
+	Sequential_search(mas, size, val);
+	time = clock() - time;
+	printf("\n");
+	printf("Time of search %f seconds", double(time) / CLOCKS_PER_SEC);
+	printf("\n");
+}
+
+void Binary_search_case(int* mas, int size, clock_t time)
+{
+	printf("\nWrite key to search: ");
+	int val;
+	scanf("%d", &val);
+	time = clock();
+	Binary_search(mas, size, val);
+	time = clock() - time;
+	printf("\n");
+	printf("Time of search %f seconds", double(time) / CLOCKS_PER_SEC);
+	printf("\n");
+}
+
+void Fibonachi_search_case(int* mas, int size, clock_t time)
+{
+	printf("\nWrite key to search: ");
+	int val;
+	scanf("%d", &val);
+	time = clock();
+	Fibonachi_search(mas,0, size-1, val);
+	time = clock() - time;
+	printf("\n");
+	printf("Time of search %f seconds", double(time) / CLOCKS_PER_SEC);
+	printf("\n");
+}
+
+void Interpolation_search_case(int* mas, int size, clock_t time)
+{
+	printf("\nWrite key to search: ");
+	int val;
+	scanf("%d", &val);
+	time = clock();
+	Interpolation_search(mas, size-1, val);
+	time = clock() - time;
+	printf("\n");
+	printf("Time of search %f seconds", double(time) / CLOCKS_PER_SEC);
+	printf("\n");
+}
+
 int main()
 {
 	srand(time(NULL));
-	clock_t time;
+	clock_t time = 0;
 	printf("***************************\nPROGRAM FOR LAB1 ALGORITHMS\n***************************\n");
 	int n=0, tmp_size=0;
 	int* mas = {};
@@ -539,6 +722,7 @@ int main()
 		printf("2: Show array\n");
 		printf("3: Sort array\n");
 		printf("4: Find in array\n");
+		printf("5: Tests\n");
 		printf("0: Exit\n");
 		printf("\nCmd: ");
 		scanf("%d", &n);
@@ -640,128 +824,47 @@ int main()
 				case 1:
 				{
 					
-				//	printf("\nUnsorted array: ");
-				//	print_mas(mas, *size_arr);
-					time = clock();
-					Selection_sort(mas, *size_arr);
-					time = clock() - time;
-				//	printf("Sorted array:   ");
-				//	print_mas(mas, *size_arr);
-					printf("\n");
-					printf("Time of sort %f seconds", double(time) / CLOCKS_PER_SEC);
-					printf("\n");
+					Selection_sort_case(mas, *size_arr, time);
 					break;
 				}
 				case 2:
 				{
-					
-				//	printf("\nUnsorted array: ");
-				//	print_mas(mas, *size_arr);
-					time = clock();
-					Insertion_sort(mas, *size_arr);
-					time = clock() - time;
-					printf("\n");
-				//	printf("Sorted array:   ");
-				//	print_mas(mas, *size_arr);
-				//	printf("\n");
-					printf("Time of sort %f seconds", double(time) / CLOCKS_PER_SEC);
-					printf("\n");
+					Insertion_sort_case(mas, *size_arr, time);
 					break;
 				}
 				case 3:
 				{
 					
-				//	printf("\nUnsorted array: ");
-				//	print_mas(mas, *size_arr);
-					time = clock();
-					Binary_insertion_sort(mas, *size_arr);
-					printf("\n");
-					time = clock() - time;
-					printf("\n");
-					//	printf("Sorted array:   ");
-					//	print_mas(mas, *size_arr);
-					//	printf("\n");
-					printf("Time of sort %f seconds", double(time) / CLOCKS_PER_SEC);
+				Binary_insertion_sort_case(mas, *size_arr, time);
 					break;
 				}
 				case 4:
 				{
 					
-				//	printf("\nUnsorted array: ");
-				//	print_mas(mas, *size_arr);
-					time = clock();
-					mas = Merge_sort(mas, buff, 0, *size_arr - 1);
-					printf("\n");
-					time = clock() - time;
-					printf("\n");
-					//	printf("Sorted array:   ");
-					//	print_mas(mas, *size_arr);
-					//	printf("\n");
-					printf("Time of sort %f seconds", double(time) / CLOCKS_PER_SEC);
+					Merge_sort_case(mas, buff, *size_arr, time);
 					break;
 				}
 				case 5:
 				{
 
-				//	printf("\nUnsorted array: ");
-				//	print_mas(mas, *size_arr);
-					time = clock();
-					Bubble_sort(mas, *size_arr);
-					time = clock() - time;
-					printf("\n");
-					//	printf("Sorted array:   ");
-					//	print_mas(mas, *size_arr);
-					//	printf("\n");
-					printf("Time of sort %f seconds", double(time) / CLOCKS_PER_SEC);
-					printf("\n");
+					Bubble_sort_case(mas, *size_arr, time);
 					break;
 				}
 				case 6:
 				{
 
-				//	printf("\nUnsorted array: ");
-				//	print_mas(mas, *size_arr);
-					time = clock();
-					Shaker_sort(mas, *size_arr);
-					time = clock() - time;
-					printf("\n");
-					//	printf("Sorted array:   ");
-					//	print_mas(mas, *size_arr);
-					//	printf("\n");
-					printf("Time of sort %f seconds", double(time) / CLOCKS_PER_SEC);
-					printf("\n");
+					Shaker_sort_case(mas, *size_arr, time);
 					break;
 				}
 				case 7:
 				{
-
-				//	printf("\nUnsorted array: ");
-				//	print_mas(mas, *size_arr);
-					time = clock();
-					Shell_sort(mas, *size_arr);
-					time = clock() - time;
-					printf("\n");
-					//	printf("Sorted array:   ");
-					//	print_mas(mas, *size_arr);
-					//	printf("\n");
-					printf("Time of sort %f seconds", double(time) / CLOCKS_PER_SEC);
-					printf("\n");
+					Shell_sort_case(mas, *size_arr, time);
 					break;
 				}
 				case 8:
 				{
 
-				//	printf("\nUnsorted array: ");
-				//	print_mas(mas, *size_arr);
-					time = clock();
-					Quick_sort(mas, 0,*size_arr-1);
-					time = clock() - time;
-					printf("\n");
-					//	printf("Sorted array:   ");
-					//	print_mas(mas, *size_arr);
-					//	printf("\n");
-					printf("Time of sort %f seconds", double(time) / CLOCKS_PER_SEC);
-					printf("\n");
+				Quick_sort_case(mas, *size_arr, time);
 					break;
 				}
 				default:
@@ -788,44 +891,84 @@ int main()
 			{
 			case 1:
 			{
-				printf("\nWrite key to search: ");
-				int val;
-				scanf("%d", &val);
-				Sequential_search(mas, *size_arr, val);
+				if (!Protection_for_sorted_array(mas, *size_arr))
+					break;
+				Sequential_search_case(mas, *size_arr,time);
 				break;
 			}
 			case 2:
 			{
 				if (!Protection_for_sorted_array(mas, *size_arr))
 					break;
-				
-
-				printf("\nWrite key to search: ");
-				int val;
-				scanf("%d", &val);
-				Binary_search(mas, *size_arr, val);
+				Binary_search_case(mas, *size_arr, time);
 				break;
 			}
 			case 3:
 			{
 				if (!Protection_for_sorted_array(mas, *size_arr))
 					break;
-
-				printf("\nWrite key to search: ");
-				int val;
-				scanf("%d", &val);
-				Fibonachi_search(mas, 0,*size_arr -1, val);
+				Fibonachi_search_case(mas, *size_arr, time);
 				break;
 			}
 			case 4:
 			{
 				if (!Protection_for_sorted_array(mas, *size_arr))
 					break;
+				Interpolation_search_case(mas, *size_arr, time);
+				break;
+			}
+			default:
+				break;
+			}
+			break;
+		}
+		case 5:
+		{
+			if (!mas)
+			{
+				printf("\nNot generated array!\n\n");
+				break;
+			}
+			printf("1: Sort test\n");
+			printf("2: Search test\n");
+			printf("0: Cancel\n");
+			printf("\nCmd: ");
+			int cmd = 0;
+			scanf("%d", &cmd);
+			switch (cmd)
+			{
+			case 1:
+			{
+				printf("\nSort test for array with %d numbers.\n",*size_arr);
+				printf("\nSelection sort:");
+				int* tmp = Copy_mas(mas, *size_arr);
+				Selection_sort_case(tmp, *size_arr, time);
+				printf("\Insertion sort:");
+				tmp = Copy_mas(mas, *size_arr);
+				Insertion_sort_case(tmp, *size_arr, time);
+				printf("\Binary insertion sort:");
+				tmp = Copy_mas(mas, *size_arr);
+				Binary_insertion_sort_case(tmp, *size_arr, time);
+				printf("\Merge sort:");
+				tmp = Copy_mas(mas, *size_arr);
+				Merge_sort_case(tmp, buff, *size_arr, time);
+				printf("Bubble sort:");
+				tmp = Copy_mas(mas, *size_arr);
+				Bubble_sort_case(tmp, *size_arr, time);
+				printf("\Shaker sort:");
+				tmp = Copy_mas(mas, *size_arr);
+				Shaker_sort_case(tmp, *size_arr, time);
+				printf("\Shell sort:");
+				tmp = Copy_mas(mas, *size_arr);
+				Shell_sort_case(tmp, *size_arr, time);
+				printf("\Quick sort:");
+				tmp = Copy_mas(mas, *size_arr);
+				Quick_sort_case(tmp, *size_arr, time);
 
-				printf("\nWrite key to search: ");
-				int val;
-				scanf("%d", &val);
-				Interpolation_search(mas,*size_arr-1, val);
+				break;
+			}
+			case 2:
+			{
 				break;
 			}
 			default:
