@@ -47,6 +47,22 @@ int* Rand_mid_square_method(int size, int n, int x)
 	return mas;
 }
 
+void Rand_linear_congruential_method(int size,int b, int x, int k, int m)
+{
+	double* mas = (double*)malloc(size * sizeof(double));
+	int tmp = (b * x + k) % m ;
+	mas[0] = (float)tmp / m;
+	for (int i = 1; i < size; i++)
+	{
+		tmp = (b * tmp + k) % m;
+		mas[i] = (float)tmp / m;
+	}
+	for (int i = 0; i < size; i++)
+	{
+		printf("%lf ", mas[i]);
+	}
+}
+
 
 int* Copy_mas(int* mas, int size)
 {
@@ -829,6 +845,7 @@ int main()
 					printf("\nMax: ");
 					scanf("%d", &max);
 					size_arr = &tmp_size;
+					printf("\n");
 					mas = Generate_mas(*size_arr,min,max);
 					buff = (int*)malloc(*size_arr * sizeof(int));
 					//printf("\nUnsorted array: ");
@@ -851,6 +868,7 @@ int main()
 				case 4:
 				{
 					printf("\n1: Middle-square method\n");
+					printf("\n2: Linear congruential method\n");
 					printf("0: Cancel\n");
 					printf("\nCmd: ");
 					int cmd = 0;
@@ -870,6 +888,26 @@ int main()
 						printf("\nx0: ");
 						scanf("%d", &x0);
 						mas = Rand_mid_square_method(*size_arr, n, x0);
+						buff = (int*)malloc(*size_arr * sizeof(int));
+						break;
+					}
+					case 2:
+					{
+
+						printf("\nWrite size of array: ");
+						scanf("%d", &tmp_size);
+						size_arr = &tmp_size;
+						printf("\nWrite parametrs of rande generation\n");
+						printf("\nb: ");
+						int b, x, k, m;
+						scanf("%d", &b);
+						printf("\nx: ");
+						scanf("%d", &x);
+						printf("\nk: ");
+						scanf("%d", &k);
+						printf("\nm: ");
+						scanf("%d", &m);
+						Rand_linear_congruential_method(*size_arr, b, x, k, m);
 						buff = (int*)malloc(*size_arr * sizeof(int));
 						break;
 					}
