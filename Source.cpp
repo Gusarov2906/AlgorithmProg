@@ -4,7 +4,13 @@
 #include<stdio.h>
 #include <time.h>
 
-
+int pow(int val, int n)
+{
+	int res = 1;
+	for (int i = 0; i < n; i++)
+		res *= val;
+		return res;
+}
 
 void print_mas(int mas[], int size)
 {
@@ -23,6 +29,21 @@ int* Generate_mas(int size, int min, int max)
 		int r = min + rand() % (max-min+1);
 		mas[i] = r;
 	}
+	return mas;
+}
+
+int* Rand_mid_square_method(int size, int n, int x)
+{
+	int* mas = (int*)malloc(size * sizeof(int));
+	mas[0] = x;
+	int y;
+	for (int i = 1; i < size; i++)
+	{
+		y = x*x;
+		x = (y / pow(10,n/2)) % pow(10,n);
+		mas[i] = x;
+	}
+	print_mas(mas, size);
 	return mas;
 }
 
@@ -752,6 +773,7 @@ int main()
 	size_arr = 0;
 	int* buff = {};
 	bool exit_f = false;
+
 	while (1)
 	{
 		if (exit_f)
@@ -774,6 +796,7 @@ int main()
 				printf("\n1: Custom array from keyboard\n");
 				printf("2: Random array with range\n");
 				printf("3: Random array with default generation\n");
+				printf("4: Choose method of random generation\n");
 				printf("0: Cancel\n");
 				printf("\nCmd: ");
 				scanf("%d", &c);
@@ -824,6 +847,37 @@ int main()
 					//print_mas(mas, *size_arr);
 					printf("\n");
 					break;
+				}
+				case 4:
+				{
+					printf("\n1: Middle-square method\n");
+					printf("0: Cancel\n");
+					printf("\nCmd: ");
+					int cmd = 0;
+					scanf("%d", &cmd);
+					switch (cmd)
+					{
+					case 1:
+					{
+
+						printf("\nWrite size of array: ");
+						scanf("%d", &tmp_size);
+						size_arr = &tmp_size;
+						printf("\nWrite parametrs of rande generation\n");
+						printf("\nn: ");
+						int x0;
+						scanf("%d", &n);
+						printf("\nx0: ");
+						scanf("%d", &x0);
+						mas = Rand_mid_square_method(*size_arr, n, x0);
+						buff = (int*)malloc(*size_arr * sizeof(int));
+						break;
+					}
+
+
+					default:
+						break;
+					}
 				}
 				default:
 					break;
