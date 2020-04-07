@@ -1,8 +1,9 @@
 ﻿#define _CRT_SECURE_NO_WARNINGS
 
 #include <stdlib.h>
-#include<stdio.h>
+#include <stdio.h>
 #include <time.h>
+#include <math.h>
 
 int pow(int val, int n)
 {
@@ -60,6 +61,35 @@ void Rand_linear_congruential_method(int size,int b, int x, int k, int m)
 	for (int i = 0; i < size; i++)
 	{
 		printf("%lf ", mas[i]);
+	}
+}
+
+void Polar_method(int size)
+{
+	srand(time(NULL));
+	double* mas = (double*)malloc((size+1) * sizeof(double));
+	double u1, u2, v1, v2, s = 1;
+	int j = 0;
+	for (int i = 0; i < (size+1)/2; i++)
+	{
+		while (s >= 1)
+		{
+			u1 = double(rand()) / RAND_MAX;
+			u2 = double(rand()) / RAND_MAX;
+			v1 = 2 * u1 - 1;
+			v2 = 2 * u2 - 1;
+			s = v1 * v1 + v2 * v2;
+		}
+		double n = sqrt((-2 * log(s)) / s);
+//		printf("%lf  %lf",v1* n ,v2 * n );
+		mas[j] = v1 * n;
+		mas[j + 1] = v2 * n;
+		j += 2;
+		s = 1;
+	}
+	for (int i = 0; i < size;i++)
+	{
+		printf("%lf  ", mas[i]);
 	}
 }
 
@@ -868,7 +898,8 @@ int main()
 				case 4:
 				{
 					printf("\n1: Middle-square method\n");
-					printf("\n2: Linear congruential method\n");
+					printf("2: Linear congruential method\n");
+					printf("3: Polar method\n");
 					printf("0: Cancel\n");
 					printf("\nCmd: ");
 					int cmd = 0;
@@ -911,7 +942,15 @@ int main()
 						buff = (int*)malloc(*size_arr * sizeof(int));
 						break;
 					}
-
+					case 3:
+					{
+						printf("\nWrite size of array: ");
+						scanf("%d", &tmp_size);
+						size_arr = &tmp_size;
+						Polar_method(*size_arr);
+						printf("\n");
+						break;
+					}
 
 					default:
 						break;
