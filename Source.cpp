@@ -549,6 +549,112 @@ int Interpolation_search(int mas[], int size, int val)
 	}
 }
 
+struct Node
+{
+	float data;
+	Node* left;
+	Node* right;
+};
+
+Node* tree;
+
+void add(Node* r, float d)
+{
+	Node* tmp;
+	if (r == NULL)
+	{
+		tree = new Node;
+		tree->data = d;
+		tree->left = NULL;
+		tree->right = NULL;
+		return;
+	}
+	if (d <= r->data)
+	{
+		// left
+		if (r->left != NULL)
+			add(r->left, d);
+		else
+		{
+			tmp = new Node;
+			tmp->data = d;
+			tmp->left = NULL;
+			tmp->right = NULL;
+			r->left = tmp;
+		}
+	}
+	else
+	{
+		//right
+		if (r->right)
+			add(r->right, d);
+		else
+		{
+			tmp = new Node;
+			tmp->data = d;
+			tmp->left = NULL;
+			tmp->right = NULL;
+			r->right = tmp;
+		}
+	}
+}
+
+void print(Node* s, int level, int l, int r)
+{
+	if (s == NULL)
+	{
+		printf("Tree is empty!!!\n");
+		return;
+	}
+	int c = (l + r) / 2;
+	if (s->left)
+		print(s->left, level + 1, l, c);
+	if (s->right)
+		print(s->right, level + 1, c, r);
+
+	return;
+}
+
+int Binary_tree_search(Node* r, float d)
+{
+	if (r == NULL)
+	{
+		printf("Not found!\n");
+		return 0;
+
+	}
+	if (r->data == d)
+	{
+		printf("Successful!\n");
+		return 1;
+	}
+
+	if (d <= r->data)
+	{
+		// left
+		if (r->left != NULL)
+			return Binary_tree_search(r->left, d);
+		else
+		{
+			printf("Not found!\n");
+			return 0;
+
+		}
+	}
+	else
+	{
+		//right
+		if (r->right)
+			return Binary_tree_search(r->right, d);
+		else
+		{
+			printf("Not found!\n");
+			return 0;
+
+		}
+	}
+}
+
 /*
 bool Hashing_search(int* mas,int size, int val)
 {
@@ -768,6 +874,21 @@ void Interpolation_search_case(int* mas, int size, clock_t time, int val)
 	printf("\n");
 }
 
+void Binary_tree_search_case(int* mas, int size, clock_t time, int val)
+{
+	time = clock();
+	for (int i = 0; i < size; i++)
+	{
+		add(tree, float(mas[i]));
+	}
+	Binary_tree_search(tree, float(val));
+	time = clock() - time;
+	printf("\n");
+	printf("Time of search %f seconds", double(time) / CLOCKS_PER_SEC);
+	//printf("%f", double(time) / CLOCKS_PER_SEC);
+	printf("\n");
+}
+
 void Sort_test_case(int* mas, int* buff, int size, clock_t time)
 {
 	printf("\nSort test for array with %d numbers.\n", size);
@@ -807,6 +928,9 @@ void Search_test_case(int* mas, int size, clock_t time, int val)
 	Fibonachi_search_case(mas, size, time, val);
 	printf("\nInterpolation search:\n");
 	Interpolation_search_case(mas, size, time, val);
+	printf("\nInterpolation search:\n");
+	Binary_tree_search_case(mas, size, time, val);
+
 }
 int main()
 {
@@ -1054,6 +1178,7 @@ int main()
 			printf("2: Binary search\n");
 			printf("3: Fibonachi search\n");
 			printf("4: Interpolation search\n");
+			printf("5: Binary tree search\n");
 			printf("0: Cancel\n");
 			printf("\nCmd: ");
 			int cmd = 0;
@@ -1098,6 +1223,16 @@ int main()
 				int val;
 				scanf("%d", &val);
 				Interpolation_search_case(mas, *size_arr, time,val);
+				break;
+			}
+			case 5:
+			{
+				if (!Protection_for_sorted_array(mas, *size_arr))
+					break;
+				printf("\nWrite key to search: ");
+				int val;
+				scanf("%d", &val);
+				Binary_tree_search_case(mas, *size_arr, time, val);
 				break;
 			}
 			default:
